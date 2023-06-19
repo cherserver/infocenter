@@ -12,13 +12,19 @@ import (
 const (
 	selfBleDeviceName = "infocenter"
 	miDeviceName      = "MJ_HT_V1"
+
+	dev1 = "4c:65:a8:d1:e7:80"
+	dev2 = "4c:65:a8:d6:89:74"
 )
 
 func NewServer() *Server {
-	return &Server{}
+	return &Server{
+		ctx: context.Background(),
+	}
 }
 
 type Server struct {
+	ctx context.Context
 }
 
 func (s *Server) Init() error {
@@ -28,9 +34,20 @@ func (s *Server) Init() error {
 	}
 	ble.SetDefaultDevice(device)
 
-	err = ble.Scan(context.Background(), false, s.advHandler, nil)
+	err = ble.Scan(s.ctx, false, s.advHandler, nil)
 	if err != nil {
 		return fmt.Errorf("failed to start bluetooth scanning: %w", err)
+	}
+
+	dev1Addr := ble.NewAddr(dev1)
+	client, err := ble.Dial(s.ctx, dev1Addr)
+	if err != nil {
+		return fmt.Errorf("failed to dial dev1: %w", err)
+	}
+
+	profile, err := client.DiscoverProfile(true)
+	for _, service := range profile.Services {
+		log.Printf("Found service: %v", service.UUID.String())
 	}
 
 	return nil
@@ -44,5 +61,10 @@ func (s *Server) advHandler(a ble.Advertisement) {
 		return
 	}
 
-	log.Printf("Mi temperature device found: %v, %v", a.Addr(), a.Connectable())
+	addr := a.Addr().String()
+	if addr == dev1 || addr == dev2 {
+		return
+	}
+
+	log.Printf("Found unknown Mi device '%s'", addr)
 }
