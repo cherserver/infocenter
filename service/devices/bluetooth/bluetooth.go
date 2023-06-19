@@ -126,5 +126,5 @@ func (s *Server) connectDevice(addr ble.Addr) {
 }
 
 func (s *Server) handleDataNotify(req []byte) {
-	log.Printf("Notify data: %v", req)
+	log.Printf("Notify data: %s", string(req))
 }
