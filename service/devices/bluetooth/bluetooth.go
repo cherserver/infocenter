@@ -130,7 +130,7 @@ func (s *Server) handleDataNotify(req []byte) {
 	hum := 0.0
 
 	for _, val := range values {
-		if len(val) > 2 {
+		if len(val) <= 2 {
 			continue
 		}
 
