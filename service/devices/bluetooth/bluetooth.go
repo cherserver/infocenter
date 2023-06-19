@@ -71,5 +71,17 @@ func (s *Server) connectDevice(addr ble.Addr) {
 	profile, err := client.DiscoverProfile(true)
 	for _, service := range profile.Services {
 		log.Printf("Dev '%v', found service: %v", addr, service.UUID.String())
+		for _, char := range service.Characteristics {
+			log.Printf("Dev '%v', found service %v characteristic '%v'", addr, service.UUID.String(), char.UUID)
+			if (char.Property & ble.CharRead) != 0 {
+				b, err := client.ReadCharacteristic(char)
+				if err != nil {
+					log.Printf("Failed to read characteristic: %s\n", err)
+					continue
+				}
+				log.Printf("        Value         %x | %q\n", b, b)
+				log.Printf("Dev '%v', found service %v characteristic '%v' value '%x' | '%q'", addr, service.UUID.String(), char.UUID, b, b)
+			}
+		}
 	}
 }
