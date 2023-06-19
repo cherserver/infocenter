@@ -119,7 +119,8 @@ func (s *Server) handleDataNotify(req []byte) {
 		return
 	}
 
-	data := string(req)
+	// T=27.3 H=30.4
+	data := strings.TrimSpace(string(req))
 	values := strings.Split(data, " ")
 	if len(values) != 2 {
 		return
@@ -136,12 +137,12 @@ func (s *Server) handleDataNotify(req []byte) {
 		switch val[0] {
 		case 'T':
 			tempVal, err := strconv.ParseFloat(val[2:], 32)
-			if err != nil {
+			if err == nil {
 				temp = tempVal
 			}
 		case 'H':
 			humVal, err := strconv.ParseFloat(val[2:], 32)
-			if err != nil {
+			if err == nil {
 				hum = humVal
 			}
 		}
