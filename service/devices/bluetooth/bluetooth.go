@@ -129,18 +129,18 @@ func (s *Server) handleDataNotify(req []byte) {
 	hum := 0.0
 
 	for _, val := range values {
-		if len(val) == 0 {
+		if len(val) > 2 {
 			continue
 		}
 
 		switch val[0] {
 		case 'T':
-			tempVal, err := strconv.ParseFloat(val[1:], 32)
+			tempVal, err := strconv.ParseFloat(val[2:], 32)
 			if err != nil {
 				temp = tempVal
 			}
 		case 'H':
-			humVal, err := strconv.ParseFloat(val[1:], 32)
+			humVal, err := strconv.ParseFloat(val[2:], 32)
 			if err != nil {
 				hum = humVal
 			}
