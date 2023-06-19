@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"strconv"
+	"strings"
 
 	"github.com/go-ble/ble"
 	"github.com/go-ble/ble/linux"
@@ -75,19 +77,6 @@ func (s *Server) connectDevice(addr ble.Addr) {
 
 	profile, err := client.DiscoverProfile(true)
 	for _, service := range profile.Services {
-		//log.Printf("Dev '%v', found service: %v", addr, service.UUID)
-		//for _, char := range service.Characteristics {
-		//	log.Printf("\tDev '%v', found service %v characteristic '%v'", addr, service.UUID, char.UUID)
-		//	if (char.Property & ble.CharRead) != 0 {
-		//		b, err := client.ReadCharacteristic(char)
-		//		if err != nil {
-		//			log.Printf("Failed to read characteristic: %s", err)
-		//			continue
-		//		}
-		//		log.Printf("\t\tDev '%v', found service %v characteristic '%v' value '%x' | '%q'", addr, service.UUID, char.UUID, b, b)
-		//	}
-		//}
-
 		switch service.UUID.String() {
 		case batteryService:
 			for _, char := range service.Characteristics {
@@ -126,5 +115,38 @@ func (s *Server) connectDevice(addr ble.Addr) {
 }
 
 func (s *Server) handleDataNotify(req []byte) {
+	if len(req) == 0 {
+		return
+	}
+
+	data := string(req)
+	values := strings.Split(data, " ")
+	if len(values) != 2 {
+		return
+	}
+
+	temp := 0.0
+	hum := 0.0
+
+	for _, val := range values {
+		if len(val) == 0 {
+			continue
+		}
+
+		switch val[0] {
+		case 'T':
+			tempVal, err := strconv.ParseFloat(val[1:], 32)
+			if err != nil {
+				temp = tempVal
+			}
+		case 'H':
+			humVal, err := strconv.ParseFloat(val[1:], 32)
+			if err != nil {
+				hum = humVal
+			}
+		}
+	}
+
 	log.Printf("Notify data: %s", string(req))
+	log.Printf("Temperature: %v, humidity: %v", temp, hum)
 }
