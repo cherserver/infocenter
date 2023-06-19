@@ -64,23 +64,22 @@ func (s *Server) advHandler(a ble.Advertisement) {
 func (s *Server) connectDevice(addr ble.Addr) {
 	client, err := ble.Dial(s.ctx, addr)
 	if err != nil {
-		log.Fatalf("failed to dial dev1: %v", err)
+		log.Fatalf("failed to dial %v: %v", addr, err)
 		return
 	}
 
 	profile, err := client.DiscoverProfile(true)
 	for _, service := range profile.Services {
-		log.Printf("Dev '%v', found service: %v", addr, service.UUID.String())
+		log.Printf("Dev '%v', found service: %v", addr, service.UUID)
 		for _, char := range service.Characteristics {
-			log.Printf("Dev '%v', found service %v characteristic '%v'", addr, service.UUID.String(), char.UUID)
+			log.Printf("\tDev '%v', found service %v characteristic '%v'", addr, service.UUID, char.UUID)
 			if (char.Property & ble.CharRead) != 0 {
 				b, err := client.ReadCharacteristic(char)
 				if err != nil {
 					log.Printf("Failed to read characteristic: %s\n", err)
 					continue
 				}
-				log.Printf("        Value         %x | %q\n", b, b)
-				log.Printf("Dev '%v', found service %v characteristic '%v' value '%x' | '%q'", addr, service.UUID.String(), char.UUID, b, b)
+				log.Printf("\t\tDev '%v', found service %v characteristic '%v' value '%x' | '%q'", addr, service.UUID, char.UUID, b, b)
 			}
 		}
 	}
