@@ -15,6 +15,11 @@ const (
 
 	dev1 = "4c:65:a8:d1:e7:80"
 	dev2 = "4c:65:a8:d6:89:74"
+
+	batteryService = "180f"
+	batteryChar    = "2a19"
+	dataService    = "226c000064764566756266734470666d"
+	dataChar       = "226caa5564764566756266734470666d"
 )
 
 func NewServer() *Server {
@@ -70,17 +75,56 @@ func (s *Server) connectDevice(addr ble.Addr) {
 
 	profile, err := client.DiscoverProfile(true)
 	for _, service := range profile.Services {
-		log.Printf("Dev '%v', found service: %v", addr, service.UUID)
-		for _, char := range service.Characteristics {
-			log.Printf("\tDev '%v', found service %v characteristic '%v'", addr, service.UUID, char.UUID)
-			if (char.Property & ble.CharRead) != 0 {
-				b, err := client.ReadCharacteristic(char)
-				if err != nil {
-					log.Printf("Failed to read characteristic: %s\n", err)
+		//log.Printf("Dev '%v', found service: %v", addr, service.UUID)
+		//for _, char := range service.Characteristics {
+		//	log.Printf("\tDev '%v', found service %v characteristic '%v'", addr, service.UUID, char.UUID)
+		//	if (char.Property & ble.CharRead) != 0 {
+		//		b, err := client.ReadCharacteristic(char)
+		//		if err != nil {
+		//			log.Printf("Failed to read characteristic: %s", err)
+		//			continue
+		//		}
+		//		log.Printf("\t\tDev '%v', found service %v characteristic '%v' value '%x' | '%q'", addr, service.UUID, char.UUID, b, b)
+		//	}
+		//}
+
+		switch service.UUID.String() {
+		case batteryService:
+			for _, char := range service.Characteristics {
+				if char.UUID.String() != batteryChar {
 					continue
 				}
-				log.Printf("\t\tDev '%v', found service %v characteristic '%v' value '%x' | '%q'", addr, service.UUID, char.UUID, b, b)
+
+				if (char.Property & ble.CharRead) != 0 {
+					val, err := client.ReadCharacteristic(char)
+					if err != nil {
+						log.Printf("Failed to read characteristic: %s", err)
+						continue
+					}
+
+					log.Printf("Device '%v' battery level %d", addr, val)
+				}
+			}
+		case dataService:
+			for _, char := range service.Characteristics {
+				if char.UUID.String() != dataChar {
+					continue
+				}
+
+				if (char.Property & ble.CharNotify) != 0 {
+					log.Printf("Device '%v' data notify ok", addr)
+				}
+
+				err = client.Subscribe(char, false, s.handleDataNotify)
+				if err != nil {
+					log.Printf("Failed to subscribe to characteristic: %s", err)
+					continue
+				}
 			}
 		}
 	}
+}
+
+func (s *Server) handleDataNotify(req []byte) {
+	log.Printf("Notify data: %v", req)
 }
