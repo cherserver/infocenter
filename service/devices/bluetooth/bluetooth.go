@@ -39,17 +39,6 @@ func (s *Server) Init() error {
 		return fmt.Errorf("failed to start bluetooth scanning: %w", err)
 	}
 
-	dev1Addr := ble.NewAddr(dev1)
-	client, err := ble.Dial(s.ctx, dev1Addr)
-	if err != nil {
-		return fmt.Errorf("failed to dial dev1: %w", err)
-	}
-
-	profile, err := client.DiscoverProfile(true)
-	for _, service := range profile.Services {
-		log.Printf("Found service: %v", service.UUID.String())
-	}
-
 	log.Printf("Blutooth server initialized")
 
 	return nil
@@ -65,8 +54,22 @@ func (s *Server) advHandler(a ble.Advertisement) {
 
 	addr := a.Addr().String()
 	if addr == dev1 || addr == dev2 {
+		s.connectDevice(a.Addr())
 		return
 	}
 
 	log.Printf("Found unknown Mi device '%s'", addr)
+}
+
+func (s *Server) connectDevice(addr ble.Addr) {
+	client, err := ble.Dial(s.ctx, addr)
+	if err != nil {
+		log.Fatalf("failed to dial dev1: %v", err)
+		return
+	}
+
+	profile, err := client.DiscoverProfile(true)
+	for _, service := range profile.Services {
+		log.Printf("Dev '%v', found service: %v", addr, service.UUID.String())
+	}
 }
