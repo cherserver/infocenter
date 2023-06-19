@@ -50,6 +50,8 @@ func (s *Server) Init() error {
 		log.Printf("Found service: %v", service.UUID.String())
 	}
 
+	log.Printf("Blutooth server initialized")
+
 	return nil
 }
 
