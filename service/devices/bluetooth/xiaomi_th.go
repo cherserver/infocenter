@@ -15,8 +15,8 @@ import (
 const (
 	miDeviceName = "MJ_HT_V1"
 
-	dev1 = "4c:65:a8:d1:e7:80"
-	dev2 = "4c:65:a8:d6:89:74"
+	dev1 = "4C:65:A8:D1:E7:80"
+	dev2 = "4C:65:A8:D6:89:74"
 
 	batteryService = "180f"
 	batteryChar    = "2a19"
