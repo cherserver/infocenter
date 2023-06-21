@@ -4,8 +4,6 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"strconv"
-	"strings"
 
 	"github.com/go-ble/ble"
 	"github.com/go-ble/ble/linux"
@@ -13,25 +11,23 @@ import (
 
 const (
 	selfBleDeviceName = "infocenter"
-	miDeviceName      = "MJ_HT_V1"
-
-	dev1 = "4c:65:a8:d1:e7:80"
-	dev2 = "4c:65:a8:d6:89:74"
-
-	batteryService = "180f"
-	batteryChar    = "2a19"
-	dataService    = "226c000064764566756266734470666d"
-	dataChar       = "226caa5564764566756266734470666d"
 )
 
 func NewServer() *Server {
 	return &Server{
-		ctx: context.Background(),
+		ctx:          context.Background(),
+		knownDevices: make(map[ble.Addr]Device, 0),
 	}
 }
 
+type Device interface {
+	Address() ble.Addr
+	Connect()
+}
+
 type Server struct {
-	ctx context.Context
+	ctx          context.Context
+	knownDevices map[ble.Addr]Device
 }
 
 func (s *Server) Init() error {
@@ -40,6 +36,9 @@ func (s *Server) Init() error {
 		return fmt.Errorf("failed to create default device: %w", err)
 	}
 	ble.SetDefaultDevice(device)
+
+	_ = s.addKnownDevice(newXiaomiTH(dev1))
+	_ = s.addKnownDevice(newXiaomiTH(dev2))
 
 	err = ble.Scan(s.ctx, false, s.advHandler, nil)
 	if err != nil {
@@ -54,100 +53,25 @@ func (s *Server) Init() error {
 func (s *Server) Stop() {
 }
 
+func (s *Server) addKnownDevice(device Device) error {
+	_, fnd := s.knownDevices[device.Address()]
+	if fnd {
+		return fmt.Errorf("device '%v' is already added in the known devices list", device.Address())
+	}
+
+	s.knownDevices[device.Address()] = device
+	return nil
+}
+
 func (s *Server) advHandler(a ble.Advertisement) {
 	if a.LocalName() != miDeviceName {
 		return
 	}
 
-	addr := a.Addr().String()
-	if addr == dev1 || addr == dev2 {
-		s.connectDevice(a.Addr())
+	if device, fnd := s.knownDevices[a.Addr()]; fnd {
+		device.Connect()
 		return
 	}
 
-	log.Printf("Found unknown Mi device '%s'", addr)
-}
-
-func (s *Server) connectDevice(addr ble.Addr) {
-	client, err := ble.Dial(s.ctx, addr)
-	if err != nil {
-		log.Fatalf("failed to dial %v: %v", addr, err)
-		return
-	}
-
-	profile, err := client.DiscoverProfile(true)
-	for _, service := range profile.Services {
-		switch service.UUID.String() {
-		case batteryService:
-			for _, char := range service.Characteristics {
-				if char.UUID.String() != batteryChar {
-					continue
-				}
-
-				if (char.Property & ble.CharRead) != 0 {
-					val, err := client.ReadCharacteristic(char)
-					if err != nil {
-						log.Printf("Failed to read characteristic: %s", err)
-						continue
-					}
-
-					log.Printf("Device '%v' battery level %d", addr, val)
-				}
-			}
-		case dataService:
-			for _, char := range service.Characteristics {
-				if char.UUID.String() != dataChar {
-					continue
-				}
-
-				if (char.Property & ble.CharNotify) != 0 {
-					log.Printf("Device '%v' data notify ok", addr)
-				}
-
-				err = client.Subscribe(char, false, s.handleDataNotify)
-				if err != nil {
-					log.Printf("Failed to subscribe to characteristic: %s", err)
-					continue
-				}
-			}
-		}
-	}
-}
-
-func (s *Server) handleDataNotify(req []byte) {
-	if len(req) == 0 {
-		return
-	}
-
-	// T=27.3 H=30.4
-	data := strings.TrimSpace(string(req))
-	values := strings.Split(data, " ")
-	if len(values) != 2 {
-		return
-	}
-
-	temp := 0.0
-	hum := 0.0
-
-	for _, val := range values {
-		if len(val) <= 2 {
-			continue
-		}
-
-		switch val[0] {
-		case 'T':
-			tempVal, err := strconv.ParseFloat(val[2:], 32)
-			if err == nil {
-				temp = tempVal
-			}
-		case 'H':
-			humVal, err := strconv.ParseFloat(val[2:], 32)
-			if err == nil {
-				hum = humVal
-			}
-		}
-	}
-
-	log.Printf("Notify data: %s", string(req))
-	log.Printf("Temperature: %v, humidity: %v", temp, hum)
+	log.Printf("Found unknown Mi device '%v'", a.Addr())
 }
