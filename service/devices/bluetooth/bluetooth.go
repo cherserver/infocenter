@@ -40,9 +40,13 @@ func (s *Server) Init() error {
 	_ = s.addKnownDevice(newXiaomiTH(dev1))
 	_ = s.addKnownDevice(newXiaomiTH(dev2))
 
-	err = ble.Scan(s.ctx, false, s.advHandler, nil)
-	if err != nil {
-		return fmt.Errorf("failed to start bluetooth scanning: %w", err)
+	//err = ble.Scan(s.ctx, false, s.advHandler, nil)
+	//if err != nil {
+	//	return fmt.Errorf("failed to start bluetooth scanning: %w", err)
+	//}
+
+	for _, dev := range s.knownDevices {
+		go dev.Connect()
 	}
 
 	log.Printf("Blutooth server initialized")
