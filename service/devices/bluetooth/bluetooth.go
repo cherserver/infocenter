@@ -70,7 +70,7 @@ func (s *Server) advHandler(a ble.Advertisement) {
 	}
 
 	if device, fnd := s.knownDevices[a.Addr().String()]; fnd {
-		device.Connect()
+		go device.Connect()
 		return
 	}
 
