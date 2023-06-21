@@ -5,8 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/go-ble/ble"
-	"github.com/go-ble/ble/linux"
+	ble "tinygo.org/x/bluetooth"
 )
 
 const (
@@ -21,7 +20,7 @@ func NewServer() *Server {
 }
 
 type Device interface {
-	Address() ble.Addr
+	Address() ble.Address
 	Connect()
 }
 
@@ -31,11 +30,15 @@ type Server struct {
 }
 
 func (s *Server) Init() error {
-	device, err := linux.NewDeviceWithName(selfBleDeviceName)
+	/*device, err := linux.NewDeviceWithName(selfBleDeviceName)
 	if err != nil {
 		return fmt.Errorf("failed to create default device: %w", err)
 	}
-	ble.SetDefaultDevice(device)
+	ble.SetDefaultDevice(device)*/
+	err := ble.DefaultAdapter.Enable()
+	if err != nil {
+		return fmt.Errorf("failed to enable bluetooth: %w", err)
+	}
 
 	_ = s.addKnownDevice(newXiaomiTH(dev1))
 	_ = s.addKnownDevice(newXiaomiTH(dev2))
@@ -55,7 +58,7 @@ func (s *Server) Init() error {
 }
 
 func (s *Server) Stop() {
-	_ = ble.Stop()
+	//_ = ble.Stop()
 }
 
 func (s *Server) addKnownDevice(device Device) error {
@@ -68,7 +71,7 @@ func (s *Server) addKnownDevice(device Device) error {
 	return nil
 }
 
-func (s *Server) advHandler(a ble.Advertisement) {
+/*func (s *Server) advHandler(a ble.Advertisement) {
 	if a.LocalName() != miDeviceName {
 		return
 	}
@@ -79,4 +82,4 @@ func (s *Server) advHandler(a ble.Advertisement) {
 	}
 
 	log.Printf("Found unknown Mi device '%v'", a.Addr())
-}
+}*/

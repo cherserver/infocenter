@@ -7,7 +7,7 @@ import (
 	"strings"
 	"sync/atomic"
 
-	"github.com/go-ble/ble"
+	ble "tinygo.org/x/bluetooth"
 
 	"github.com/cherserver/infocenter/service/devices"
 )
@@ -34,9 +34,12 @@ var _ XiaomiTH = &xiaomiTH{}
 var _ Device = &xiaomiTH{}
 
 func newXiaomiTH(address string) *xiaomiTH {
+	var addr ble.Address
+	addr.Set(address)
+
 	device := &xiaomiTH{
 		ctx:     context.Background(),
-		address: ble.NewAddr(address),
+		address: addr,
 	}
 
 	device.batteryLevel.Store(0)
@@ -51,7 +54,7 @@ func newXiaomiTH(address string) *xiaomiTH {
 type xiaomiTH struct {
 	ctx context.Context
 
-	address      ble.Addr
+	address      ble.Address
 	dataPtr      atomic.Pointer[xiaomiTHData]
 	batteryLevel atomic.Uint32
 }
@@ -61,7 +64,7 @@ type xiaomiTHData struct {
 	humidity    float32
 }
 
-func (x *xiaomiTH) Address() ble.Addr {
+func (x *xiaomiTH) Address() ble.Address {
 	return x.address
 }
 
@@ -77,7 +80,7 @@ func (x *xiaomiTH) Humidity() float32 {
 	return x.dataPtr.Load().humidity
 }
 
-func (x *xiaomiTH) Connect() {
+/*func (x *xiaomiTH) Connect() {
 	client, err := ble.Dial(x.ctx, x.address)
 	if err != nil {
 		log.Fatalf("failed to dial %v: %v", x.address, err)
@@ -85,6 +88,11 @@ func (x *xiaomiTH) Connect() {
 	}
 
 	profile, err := client.DiscoverProfile(true)
+	if err != nil {
+		log.Fatalf("failed to discover device profile %v: %v", x.address, err)
+		return
+	}
+
 	for _, service := range profile.Services {
 		switch service.UUID.String() {
 		case batteryService:
@@ -127,10 +135,36 @@ func (x *xiaomiTH) Connect() {
 		log.Printf("Clent '%v' disconnected", client.Addr())
 		x.Connect()
 	}()
-}
+}*/
 
 func (x *xiaomiTH) Disconnect() {
 
+}
+
+func (x *xiaomiTH) Connect() {
+	client, err := ble.DefaultAdapter.Connect(x.Address(), ble.ConnectionParams{})
+	if err != nil {
+		log.Fatalf("failed to dial %v: %v", x.address, err)
+		return
+	}
+
+	profile, err := client.DiscoverServices(nil)
+	if err != nil {
+		log.Fatalf("failed to discover device profile %v: %v", x.address, err)
+		return
+	}
+
+	for _, service := range profile {
+		chars, err := service.DiscoverCharacteristics(nil)
+		if err != nil {
+			log.Fatalf("failed to discover service characteristics %v: %v", x.address, err)
+			return
+		}
+
+		for _, char := range chars {
+			log.Printf("Discovered service '%v' char '%v'", service.UUID(), char.UUID())
+		}
+	}
 }
 
 func (x *xiaomiTH) handleDataNotify(req []byte) {
