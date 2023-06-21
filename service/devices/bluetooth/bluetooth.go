@@ -51,6 +51,7 @@ func (s *Server) Init() error {
 }
 
 func (s *Server) Stop() {
+	_ = ble.Stop()
 }
 
 func (s *Server) addKnownDevice(device Device) error {

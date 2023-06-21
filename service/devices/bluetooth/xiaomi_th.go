@@ -123,6 +123,10 @@ func (x *xiaomiTH) Connect() {
 	}
 }
 
+func (x *xiaomiTH) Disconnect() {
+
+}
+
 func (x *xiaomiTH) handleDataNotify(req []byte) {
 	if len(req) == 0 {
 		return
