@@ -16,7 +16,7 @@ const (
 func NewServer() *Server {
 	return &Server{
 		ctx:          context.Background(),
-		knownDevices: make(map[ble.Addr]Device, 0),
+		knownDevices: make(map[string]Device, 0),
 	}
 }
 
@@ -27,7 +27,7 @@ type Device interface {
 
 type Server struct {
 	ctx          context.Context
-	knownDevices map[ble.Addr]Device
+	knownDevices map[string]Device
 }
 
 func (s *Server) Init() error {
@@ -54,12 +54,12 @@ func (s *Server) Stop() {
 }
 
 func (s *Server) addKnownDevice(device Device) error {
-	_, fnd := s.knownDevices[device.Address()]
+	_, fnd := s.knownDevices[device.Address().String()]
 	if fnd {
 		return fmt.Errorf("device '%v' is already added in the known devices list", device.Address())
 	}
 
-	s.knownDevices[device.Address()] = device
+	s.knownDevices[device.Address().String()] = device
 	return nil
 }
 
@@ -68,7 +68,7 @@ func (s *Server) advHandler(a ble.Advertisement) {
 		return
 	}
 
-	if device, fnd := s.knownDevices[a.Addr()]; fnd {
+	if device, fnd := s.knownDevices[a.Addr().String()]; fnd {
 		device.Connect()
 		return
 	}
