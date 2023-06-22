@@ -79,10 +79,7 @@ func (x *xiaomiTH) Humidity() float32 {
 
 func (x *xiaomiTH) Connect() {
 	log.Printf("Connect device '%v'", x.address)
-	
-	client, err := ble.Connect(x.ctx, func(a ble.Advertisement) bool {
-		return a.Addr() == x.address
-	})
+	client, err := ble.Dial(x.ctx, x.address)
 	if err != nil {
 		log.Fatalf("failed to dial %v: %v", x.address, err)
 		return
