@@ -131,10 +131,7 @@ func (x *xiaomiTH) Connect() {
 	go func() {
 		<-client.Disconnected()
 		log.Printf("Clent '%v' disconnected", client.Addr())
-		err := client.ClearSubscriptions()
-		if err != nil {
-			log.Printf("Clent '%v' failed to cancel cubscriptions: %v", client.Addr(), err)
-		}
+		go x.Connect()
 	}()
 }
 
@@ -183,8 +180,7 @@ func (x *xiaomiTH) handleDataNotify(req []byte) {
 		}
 	}
 
-	log.Printf("Notify data: %s", string(req))
-	log.Printf("New data: %v", newData)
+	log.Printf("Device '%v' new data: %v", x.address, newData)
 
 	x.dataPtr.Store(newData)
 }
