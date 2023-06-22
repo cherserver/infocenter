@@ -81,7 +81,8 @@ func (x *xiaomiTH) Connect() {
 	log.Printf("Connect device '%v'", x.address)
 	client, err := ble.Dial(x.ctx, x.address)
 	if err != nil {
-		log.Fatalf("failed to dial %v: %v", x.address, err)
+		log.Printf("failed to dial %v: %v", x.address, err)
+		go x.Connect()
 		return
 	}
 
