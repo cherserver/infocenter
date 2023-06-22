@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"log"
 
-	ble "tinygo.org/x/bluetooth"
+	"github.com/go-ble/ble"
+	"github.com/go-ble/ble/linux"
 )
 
 const (
@@ -20,7 +21,7 @@ func NewServer() *Server {
 }
 
 type Device interface {
-	Address() ble.Address
+	Address() ble.Addr
 	Connect()
 }
 
@@ -30,15 +31,11 @@ type Server struct {
 }
 
 func (s *Server) Init() error {
-	/*device, err := linux.NewDeviceWithName(selfBleDeviceName)
+	device, err := linux.NewDeviceWithName(selfBleDeviceName)
 	if err != nil {
 		return fmt.Errorf("failed to create default device: %w", err)
 	}
-	ble.SetDefaultDevice(device)*/
-	err := ble.DefaultAdapter.Enable()
-	if err != nil {
-		return fmt.Errorf("failed to enable bluetooth: %w", err)
-	}
+	ble.SetDefaultDevice(device)
 
 	_ = s.addKnownDevice(newXiaomiTH(dev1))
 	_ = s.addKnownDevice(newXiaomiTH(dev2))
@@ -71,7 +68,7 @@ func (s *Server) addKnownDevice(device Device) error {
 	return nil
 }
 
-/*func (s *Server) advHandler(a ble.Advertisement) {
+func (s *Server) advHandler(a ble.Advertisement) {
 	if a.LocalName() != miDeviceName {
 		return
 	}
@@ -82,4 +79,4 @@ func (s *Server) addKnownDevice(device Device) error {
 	}
 
 	log.Printf("Found unknown Mi device '%v'", a.Addr())
-}*/
+}
