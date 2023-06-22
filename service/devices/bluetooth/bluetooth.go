@@ -37,6 +37,11 @@ func (s *Server) Init() error {
 	}
 	ble.SetDefaultDevice(device)
 
+	err = device.HCI.Init()
+	if err != nil {
+		return fmt.Errorf("failed to init HCI for default device: %w", err)
+	}
+
 	_ = s.addKnownDevice(newXiaomiTH(dev1))
 	_ = s.addKnownDevice(newXiaomiTH(dev2))
 
