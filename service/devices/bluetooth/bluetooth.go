@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/go-ble/ble"
 	"github.com/go-ble/ble/linux"
@@ -40,10 +41,13 @@ func (s *Server) Init() error {
 	_ = s.addKnownDevice(newXiaomiTH(dev1))
 	_ = s.addKnownDevice(newXiaomiTH(dev2))
 
-	//err = ble.Scan(s.ctx, false, s.advHandler, nil)
-	//if err != nil {
-	//	return fmt.Errorf("failed to start bluetooth scanning: %w", err)
-	//}
+	context.WithTimeout(s.ctx, 5*time.Second)
+	err = ble.Scan(s.ctx, false, s.advHandler, nil)
+	if err != nil {
+		return fmt.Errorf("failed to start bluetooth scanning: %w", err)
+	}
+
+	time.Sleep(5 * time.Second)
 
 	for _, dev := range s.knownDevices {
 		go dev.Connect()
@@ -74,7 +78,7 @@ func (s *Server) advHandler(a ble.Advertisement) {
 	}
 
 	if device, fnd := s.knownDevices[a.Addr().String()]; fnd {
-		go device.Connect()
+		log.Printf("Device found: %v", device.Address())
 		return
 	}
 
