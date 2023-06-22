@@ -78,6 +78,8 @@ func (x *xiaomiTH) Humidity() float32 {
 }
 
 func (x *xiaomiTH) Connect() {
+	log.Printf("Connect device '%v'", x.address)
+	
 	client, err := ble.Connect(x.ctx, func(a ble.Advertisement) bool {
 		return a.Addr() == x.address
 	})
