@@ -131,7 +131,6 @@ func (x *xiaomiTH) Connect() {
 	go func() {
 		<-client.Disconnected()
 		log.Printf("Clent '%v' disconnected", client.Addr())
-		x.Connect()
 	}()
 }
 
