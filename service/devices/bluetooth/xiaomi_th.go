@@ -86,7 +86,7 @@ func (x *xiaomiTH) Connect() {
 		return
 	}
 
-	profile, err := client.DiscoverProfile(true)
+	profile, err := client.DiscoverProfile(false)
 	if err != nil {
 		log.Fatalf("failed to discover device profile %v: %v", x.address, err)
 		return
