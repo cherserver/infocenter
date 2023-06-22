@@ -131,6 +131,10 @@ func (x *xiaomiTH) Connect() {
 	go func() {
 		<-client.Disconnected()
 		log.Printf("Clent '%v' disconnected", client.Addr())
+		err := client.ClearSubscriptions()
+		if err != nil {
+			log.Printf("Clent '%v' failed to cancel cubscriptions: %v", client.Addr(), err)
+		}
 	}()
 }
 
