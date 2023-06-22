@@ -41,13 +41,14 @@ func (s *Server) Init() error {
 	_ = s.addKnownDevice(newXiaomiTH(dev1))
 	_ = s.addKnownDevice(newXiaomiTH(dev2))
 
-	context.WithTimeout(s.ctx, 5*time.Second)
-	err = ble.Scan(s.ctx, false, s.advHandler, nil)
+	scanCtx, cancelScan := context.WithCancel(s.ctx)
+	err = ble.Scan(scanCtx, false, s.advHandler, nil)
 	if err != nil {
 		return fmt.Errorf("failed to start bluetooth scanning: %w", err)
 	}
 
 	time.Sleep(5 * time.Second)
+	cancelScan()
 
 	for _, dev := range s.knownDevices {
 		go dev.Connect()
