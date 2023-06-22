@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 	"sync/atomic"
+	"time"
 
 	"github.com/go-ble/ble"
 
@@ -82,6 +83,7 @@ func (x *xiaomiTH) Connect() {
 	client, err := ble.Dial(x.ctx, x.address)
 	if err != nil {
 		log.Printf("failed to dial %v: %v", x.address, err)
+		time.Sleep(1 * time.Second)
 		go x.Connect()
 		return
 	}
