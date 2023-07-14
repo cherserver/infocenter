@@ -6,16 +6,30 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/cherserver/infocenter/service/devices/bluetooth"
+	"github.com/cherserver/infocenter/service/devices/xiaomi"
+	"github.com/cherserver/infocenter/service/web"
+)
+
+const (
+	gatewayAddr  = "192.168.31.21"
+	gatewayToken = "540b4bf40bb290ef62004d27fc3438e6"
 )
 
 func main() {
-	var err error
-
-	bluetoothServer := bluetooth.NewServer()
-	err = bluetoothServer.Init()
+	gateway, err := xiaomi.NewGateway(gatewayAddr, gatewayToken)
 	if err != nil {
-		log.Fatalf("Failed to initialize bluetooth server: %v", err)
+		log.Fatalf("Failed to create gateway: %v", err)
+	}
+
+	err = gateway.Init()
+	if err != nil {
+		log.Fatalf("Failed to initialize gateway: %v", err)
+	}
+
+	webServer := web.NewServer(gateway)
+	err = webServer.Init()
+	if err != nil {
+		log.Fatalf("Failed to initialize web server: %v", err)
 	}
 
 	stopSignalCh := make(chan os.Signal, 1)
@@ -23,5 +37,6 @@ func main() {
 	stopSignal := <-stopSignalCh
 	log.Printf("Signal '%+v' caught, exit", stopSignal)
 
-	bluetoothServer.Stop()
+	webServer.Stop()
+	gateway.Stop()
 }
