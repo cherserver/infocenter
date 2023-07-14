@@ -20,7 +20,7 @@ body {
 }
 
 span {
-    font-size: 1.1rem;
+    #font-size: 1.1rem;
 }
 
 .cards{
@@ -36,8 +36,9 @@ span {
     padding-left: 1rem;
     padding-right: 1rem;
     width: 14rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     margin-right: 1.5rem;
+    background-color: #1a1a1a;
 }
 
 .sensor-card-caption {
@@ -49,6 +50,7 @@ span {
 
 .card-label {
     position: relative;
+    font-size: 1.1rem;
 }
 
 .battery-container {
@@ -66,6 +68,14 @@ span {
     position: relative;
     bottom: 8px;
     left: 7px;
+}
+
+.displays-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .thermometer-label {
@@ -119,4 +129,6 @@ span {
 
 #reset-button-wrapper {
     position: fixed;
+    top: 1rem;
+    right: 1rem;
 }

@@ -20,7 +20,7 @@
                 <span class="battery-icon material-icons" id="kitchen-battery-bar">battery_3_bar</span>
             </div>
         </div>
-        <p>
+        <div class="displays-container">
             <label id="kitchen-temp-field" class="temperature-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
                 <span class="mdc-notched-outline">
                     <span class="mdc-notched-outline__leading"></span>
@@ -43,7 +43,7 @@
                 <input type="text" class="mdc-text-field__input" aria-labelledby="kitchen-humidity-label-id" value="100.0" disabled>
                 <span class="mdc-text-field__affix mdc-text-field__affix--suffix">%</span>
             </label>
-        </p>
+        </div>
     </div>
     <div class="sensor-card mdc-elevation--z10">
         <div class="sensor-card-caption">
@@ -53,7 +53,7 @@
                 <span class="battery-icon material-icons" id="bedroom-battery-bar">battery_3_bar</span>
             </div>
         </div>
-        <p>
+        <div class="displays-container">
             <label id="bedroom-temp-field" class="temperature-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
                 <span class="mdc-notched-outline">
                     <span class="mdc-notched-outline__leading"></span>
@@ -76,7 +76,7 @@
                 <input type="text" class="mdc-text-field__input" aria-labelledby="bedroom-humidity-label-id" value="100.0" disabled>
                 <span class="mdc-text-field__affix mdc-text-field__affix--suffix">%</span>
             </label>
-        </p>
+        </div>
     </div>
     <div class="sensor-card mdc-elevation--z10">
         <div class="sensor-card-caption">
@@ -86,7 +86,7 @@
                 <span class="battery-icon material-icons" id="balcony-battery-bar">battery_3_bar</span>
             </div>
         </div>
-        <p>
+        <div class="displays-container">
             <label id="balcony-temp-field" class="temperature-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
                 <span class="mdc-notched-outline">
                     <span class="mdc-notched-outline__leading"></span>
@@ -109,12 +109,17 @@
                 <input type="text" class="mdc-text-field__input" aria-labelledby="balcony-humidity-label-id" value="100.0" disabled>
                 <span class="mdc-text-field__affix mdc-text-field__affix--suffix">%</span>
             </label>
-        </p>
+        </div>
     </div>
-</div>
-
-<p>
-    <label id="pressure-field" class="pressure-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
+    <div class="sensor-card mdc-elevation--z10">
+        <div class="sensor-card-caption">
+            <span class="card-label">Pressure</span>
+            <div class="battery-container">
+                <span class="battery-icon material-icons">compress</span>
+            </div>
+        </div>
+        <div class="displays-container">
+            <label id="pressure-field" class="pressure-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
                 <span class="mdc-notched-outline__notch">
@@ -122,10 +127,12 @@
                 </span>
                 <span class="mdc-notched-outline__trailing"></span>
             </span>
-        <input type="text" class="mdc-text-field__input" aria-labelledby="pressure-label-id" value="700" disabled>
-        <span class="mdc-text-field__affix mdc-text-field__affix--suffix">mm Hg</span>
-    </label>
-</p>
+                <input type="text" class="mdc-text-field__input" aria-labelledby="pressure-label-id" value="700" disabled>
+                <span class="mdc-text-field__affix mdc-text-field__affix--suffix">mm Hg</span>
+            </label>
+        </div>
+    </div>
+</div>
 
 <div id="reset-button-wrapper" class="mdc-touch-target-wrapper">
     <button id="reset-button" class="mdc-fab mdc-fab--mini mdc-fab--touch">
