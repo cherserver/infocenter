@@ -312,7 +312,7 @@
 
         const pressure = sensor.pressure;
         if (pressure !== undefined) {
-            pressureField.value = pressure / 133.3223684;
+            pressureField.value = Math.round(pressure / 133.3223684);
         }
     }
 
