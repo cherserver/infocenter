@@ -37,7 +37,7 @@ span {
     padding-right: 1rem;
     width: 14rem;
     margin-bottom: 1rem;
-    margin-right: 1rem;
+    margin-right: 1.5rem;
 }
 
 .sensor-card-caption {
@@ -115,4 +115,8 @@ span {
     color: lime !important;
     font-family: DS-DIGIB !important;
     font-size: 1.4rem !important;
+}
+
+#reset-button-wrapper {
+    position: fixed;
 }
