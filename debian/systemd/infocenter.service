@@ -1,0 +1,14 @@
+[Unit]
+Description=Raspberry Pi Info center service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+WorkingDirectory=/etc/infocenter
+ExecStart=/usr/sbin/infocenter
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Info center</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,400,500">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="framework/material-components-web.css" />
+</head>
+<body class="mdc-typography">
+<form>
+    <p><span class="thermometer-label">Kitchen</span>
+        <label id="kitchen-temp-field" class="temperature-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label mdc-floating-label--float-above" id="kitchen-temp-label-id">Temperature</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input type="text" class="mdc-text-field__input" aria-labelledby="kitchen-temp-label-id" value="-00.0" disabled>
+            <span class="mdc-text-field__affix mdc-text-field__affix--suffix">°C</span>
+        </label>
+        <label id="kitchen-humidity-field" class="humidity-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label mdc-floating-label--float-above" id="kitchen-humidity-label-id">Humidity</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input type="text" class="mdc-text-field__input" aria-labelledby="kitchen-humidity-label-id" value="100.0" disabled>
+            <span class="mdc-text-field__affix mdc-text-field__affix--suffix">%</span>
+        </label>
+        <label id="kitchen-battery-field" class="battery-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label mdc-floating-label--float-above" id="kitchen-battery-label-id">Battery</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input type="text" class="mdc-text-field__input" aria-labelledby="kitchen-battery-label-id" value="100.0" disabled>
+            <span class="mdc-text-field__affix mdc-text-field__affix--suffix">%</span>
+        </label>
+    </p>
+    <p><span class="thermometer-label">Bedroom</span>
+        <label id="bedroom-temp-field" class="temperature-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label mdc-floating-label--float-above" id="bedroom-temp-label-id">Temperature</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input type="text" class="mdc-text-field__input" aria-labelledby="bedroom-temp-label-id" value="-00.0" disabled>
+            <span class="mdc-text-field__affix mdc-text-field__affix--suffix">°C</span>
+        </label>
+        <label id="bedroom-humidity-field" class="humidity-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label mdc-floating-label--float-above" id="bedroom-humidity-label-id">Humidity</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input type="text" class="mdc-text-field__input" aria-labelledby="bedroom-humidity-label-id" value="100.0" disabled>
+            <span class="mdc-text-field__affix mdc-text-field__affix--suffix">%</span>
+        </label>
+        <label id="bedroom-battery-field" class="battery-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label mdc-floating-label--float-above" id="bedroom-battery-label-id">Battery</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input type="text" class="mdc-text-field__input" aria-labelledby="bedroom-battery-label-id" value="100.0" disabled>
+            <span class="mdc-text-field__affix mdc-text-field__affix--suffix">%</span>
+        </label>
+    </p>
+    <p><span class="thermometer-label">Balcony</span>
+        <label id="balcony-temp-field" class="temperature-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label mdc-floating-label--float-above" id="balcony-temp-label-id">Temperature</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input type="text" class="mdc-text-field__input" aria-labelledby="balcony-temp-label-id" value="-00.0" disabled>
+            <span class="mdc-text-field__affix mdc-text-field__affix--suffix">°C</span>
+        </label>
+        <label id="balcony-humidity-field" class="humidity-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label mdc-floating-label--float-above" id="balcony-humidity-label-id">Humidity</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input type="text" class="mdc-text-field__input" aria-labelledby="balcony-humidity-label-id" value="100.0" disabled>
+            <span class="mdc-text-field__affix mdc-text-field__affix--suffix">%</span>
+        </label>
+        <label id="balcony-battery-field" class="battery-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label mdc-floating-label--float-above" id="balcony-battery-label-id">Battery</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input type="text" class="mdc-text-field__input" aria-labelledby="balcony-battery-label-id" value="100.0" disabled>
+            <span class="mdc-text-field__affix mdc-text-field__affix--suffix">%</span>
+        </label>
+    </p>
+    <p><span class="thermometer-label">Pressure</span>
+        <label id="pressure-field" class="pressure-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label mdc-floating-label--float-above" id="pressure-label-id">Pressure</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input type="text" class="mdc-text-field__input" aria-labelledby="pressure-label-id" value="100.0" disabled>
+            <span class="mdc-text-field__affix mdc-text-field__affix--suffix">mm Hg</span>
+        </label>
+    </p>
+</form>
+
+<div class="mdc-touch-target-wrapper">
+    <button id="reset-button" class="mdc-fab mdc-fab--mini mdc-fab--touch">
+        <div class="mdc-fab__ripple"></div>
+        <span class="material-icons mdc-fab__icon">settings_backup_restore</span>
+        <div class="mdc-fab__touch"></div>
+    </button>
+</div>
+
+<div id="error-snackbar" class="mdc-snackbar">
+    <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
+        <div class="mdc-snackbar__label" aria-atomic="false">
+            error text
+        </div>
+        <div class="mdc-snackbar__actions" aria-atomic="true">
+            <button id="error-snackbar-dismiss" class="mdc-icon-button mdc-snackbar__dismiss material-icons" title="Dismiss">close</button>
+        </div>
+    </div>
+</div>
+<script src="framework/material-components-web.js"></script>
+<script>
+    // TODO: 'fetch' error handling with try/catch
+    const updateInterval=1000;
+    let timeoutId = null;
+    let autoUpdateEnabled = true;
+
+    mdc.autoInit();
+    const errorBar = new mdc.snackbar.MDCSnackbar(document.querySelector('#error-snackbar'));
+
+    const kitchenTempField = new mdc.textField.MDCTextField(document.querySelector('#kitchen-temp-field'));
+    const kitchenHumidityField = new mdc.textField.MDCTextField(document.querySelector('#kitchen-humidity-field'));
+    const kitchenBatteryField = new mdc.textField.MDCTextField(document.querySelector('#kitchen-battery-field'));
+
+    const bedroomTempField = new mdc.textField.MDCTextField(document.querySelector('#bedroom-temp-field'));
+    const bedroomHumidityField = new mdc.textField.MDCTextField(document.querySelector('#bedroom-humidity-field'));
+    const bedroomBatteryField = new mdc.textField.MDCTextField(document.querySelector('#bedroom-battery-field'));
+
+    const balconyTempField = new mdc.textField.MDCTextField(document.querySelector('#balcony-temp-field'));
+    const balconyHumidityField = new mdc.textField.MDCTextField(document.querySelector('#balcony-humidity-field'));
+    const balconyBatteryField = new mdc.textField.MDCTextField(document.querySelector('#balcony-battery-field'));
+
+    const pressureField = new mdc.textField.MDCTextField(document.querySelector('#pressure-field'));
+
+    const resetButton = document.querySelector('#reset-button')
+    new mdc.ripple.MDCRipple(resetButton);
+    resetButton.addEventListener('click', _ => {
+        reset()
+    })
+
+    updateStatus();
+    enableStatusUpdate();
+
+    function enableStatusUpdate() {
+        if (!autoUpdateEnabled) {
+            return
+        }
+
+        timeoutId = setTimeout(autoUpdateStatus, updateInterval);
+
+        function autoUpdateStatus() {
+            updateStatus();
+            timeoutId = setTimeout(autoUpdateStatus, updateInterval);
+        }
+    }
+
+    function disableStatusUpdate() {
+        if (timeoutId != null) {
+            clearTimeout(timeoutId);
+        }
+    }
+
+    async function reset() {
+        const request = new Request(
+            '/reset',
+            {
+                method: 'POST',
+            }
+        );
+
+        const response = await fetch(request);
+        if (!response.ok) {
+            showResponseError('Failed to reset', response);
+        }
+    }
+
+    async function getStatus() {
+        const request = new Request(
+            '/sensors', { method: 'GET' }
+        );
+
+        const response = await fetch(request);
+        if (!response.ok) {
+            showResponseError('Failed to get status', response);
+            return null;
+        }
+
+        return await response.json()
+    }
+
+    function updateStatus() {
+        getStatus().then(status => {
+            if (status == null) {
+                return;
+            }
+
+            const kitchenSensorSID = "158d0001fd4989";
+            const bedroomSensorSID = "158d000247d48b";
+            const balconySensorSID = "158d0001f57fee";
+
+            for (const sensorKey in status) {
+                let sensor = status[sensorKey];
+
+                if (sensor.sid == null) {
+                    continue;
+                }
+
+                switch (sensor.sid) {
+                    case kitchenSensorSID:
+                        updateThermometer(sensor, kitchenTempField, kitchenHumidityField, kitchenBatteryField);
+                        break;
+                    case bedroomSensorSID:
+                        updateThermometer(sensor, bedroomTempField, bedroomHumidityField, bedroomBatteryField);
+                        updatePressure(sensor, pressureField)
+                        break;
+                    case balconySensorSID:
+                        updateThermometer(sensor, balconyTempField, balconyHumidityField, balconyBatteryField);
+                        break;
+                }
+            }
+        });
+    }
+
+    function formatDecimal(data) {
+        return parseFloat(data).toLocaleString(
+            'en-US', {
+                minimumFractionDigits: 1,
+                maximumFractionDigits: 1,
+            }
+        )
+    }
+
+    function updateThermometer(thermometer, tempField, humidityField, batteryField) {
+        if (thermometer === undefined) {
+            return;
+        }
+
+        const temp = thermometer.temperature;
+        if (temp !== undefined) {
+            tempField.value = formatDecimal(temp);
+        }
+
+        const hum = thermometer.humidity;
+        if (hum !== undefined) {
+            humidityField.value = formatDecimal(hum);
+        }
+
+        const bat = thermometer.battery_percent;
+        if (bat !== undefined) {
+            batteryField.value = bat;
+        }
+    }
+
+    function updatePressure(sensor, pressureField) {
+        if (sensor === undefined) {
+            return;
+        }
+
+        const pressure = sensor.pressure;
+        if (pressure !== undefined) {
+            pressureField.value = pressure / 133.3223684;
+        }
+    }
+
+    function showError(errorText) {
+        errorBar.labelText = errorText;
+        errorBar.open()
+    }
+
+    function showResponseError(errorText, response) {
+        errorBar.labelText = errorText + ": " + response.status + " " + response.statusText;
+        errorBar.open()
+    }
+</script>
+</body>
+</html>

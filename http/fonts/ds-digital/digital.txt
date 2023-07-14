@@ -1,0 +1,78 @@
+[0000] Sending msg {"data":"{\"key\":\"\"}","cmd":"get_id_list"} 
+DEBU[0000] Received device message: {"cmd":"get_id_list_ack","sid":"7811dce17b51","token":"XwR6UsB5NdAylOTj","data":"[\"158d0001f57fee\",\"158d000247d48b\",\"158d0001fd4989\"]"} 
+DEBU[0000] Sending msg {"sid":"158d0001f57fee","data":"{\"key\":\"\"}","cmd":"read"} 
+DEBU[0000] Sending msg {"sid":"158d000247d48b","data":"{\"key\":\"\"}","cmd":"read"} 
+DEBU[0000] Sending msg {"sid":"158d0001fd4989","data":"{\"key\":\"\"}","cmd":"read"} 
+DEBU[0000] Sending msg {"sid":"7811dce17b51","data":"{\"key\":\"C492B93900D09BAB06CC6AF2E9A7713F\"}","cmd":"read"} 
+DEBU[0000] Received device message: {"cmd":"read_ack","model":"sensor_ht","sid":"158d0001f57fee","short_id":33831,"data":"{\"voltage\":3025,\"temperature\":\"10000\",\"humidity\":\"0\"}"} 
+DEBU[0000] Received device message: {"cmd":"read_ack","model":"weather.v1","sid":"158d000247d48b","short_id":63971,"data":"{\"voltage\":3035,\"temperature\":\"2551\",\"humidity\":\"4968\",\"pressure\":\"100357\"}"} 
+DEBU[0000] Received device message: {"cmd":"read_ack","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"voltage\":3005,\"temperature\":\"2587\",\"humidity\":\"3934\"}"} 
+DEBU[0000] Received device message: {"cmd":"read_ack","model":"gateway","sid":"7811dce17b51","short_id":0,"data":"{\"rgb\":0,\"illumination\":745,\"proto_version\":\"1.1.2\"}"} 
+ERRO[0000] Unknown device type: weather.v1              
+INFO[0000] ID: 158d0001f57fee, State: &{Temperature:100 Humidity:0 Battery:91.666664} 
+INFO[0000] ID: 7811dce17b51, State: &{On:false RGB:{R:0 G:0 B:0 A:0} Brightness:0 internalRGB:0} 
+INFO[0000] ID: 158d0001fd4989, State: &{Temperature:25.87 Humidity:39.34 Battery:91.06061} 
+DEBU[0007] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"IQ79OxPZ9GCyXqXA","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0017] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"VBuIUnEmRhPHCQpa","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0027] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"Uo2UPrJvMxNYC9UP","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0037] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"GiUxg0oKIfjVwMd2","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0047] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"xeE3To7ySy3BdhvM","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0057] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"ayfCkfY7qwunnqIM","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0067] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"6hhrg2PIJGSTLsq0","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0077] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"cRZ3mLzfw8Tcq9yx","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0078] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"temperature\":\"2606\"}"} 
+INFO[0078] ID: 158d0001fd4989, State: &{Temperature:26.06 Humidity:39.34 Battery:91.06061} 
+DEBU[0078] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"humidity\":\"6485\"}"} 
+INFO[0078] ID: 158d0001fd4989, State: &{Temperature:26.06 Humidity:64.85 Battery:91.06061} 
+DEBU[0081] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"temperature\":\"2633\"}"} 
+INFO[0081] ID: 158d0001fd4989, State: &{Temperature:26.33 Humidity:64.85 Battery:91.06061} 
+DEBU[0081] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"humidity\":\"8095\"}"} 
+INFO[0081] ID: 158d0001fd4989, State: &{Temperature:26.33 Humidity:80.95 Battery:91.06061} 
+DEBU[0084] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"temperature\":\"2616\"}"} 
+INFO[0084] ID: 158d0001fd4989, State: &{Temperature:26.16 Humidity:80.95 Battery:91.06061} 
+DEBU[0084] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"humidity\":\"8773\"}"} 
+INFO[0084] ID: 158d0001fd4989, State: &{Temperature:26.16 Humidity:87.73 Battery:91.06061} 
+DEBU[0087] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"ysvd7lJ5JPIqARhw","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0096] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"temperature\":\"2598\"}"} 
+INFO[0096] ID: 158d0001fd4989, State: &{Temperature:25.98 Humidity:87.73 Battery:91.06061} 
+DEBU[0096] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"humidity\":\"7837\"}"} 
+INFO[0096] ID: 158d0001fd4989, State: &{Temperature:25.98 Humidity:78.37 Battery:91.06061} 
+DEBU[0097] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"RP2BMdchTnf6ZUp3","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0100] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"temperature\":\"2604\"}"} 
+INFO[0100] ID: 158d0001fd4989, State: &{Temperature:26.04 Humidity:78.37 Battery:91.06061} 
+DEBU[0100] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"humidity\":\"6566\"}"} 
+INFO[0100] ID: 158d0001fd4989, State: &{Temperature:26.04 Humidity:65.66 Battery:91.06061} 
+DEBU[0103] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"temperature\":\"2604\"}"} 
+INFO[0103] ID: 158d0001fd4989, State: &{Temperature:26.04 Humidity:65.66 Battery:91.06061} 
+DEBU[0103] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"humidity\":\"5557\"}"} 
+INFO[0103] ID: 158d0001fd4989, State: &{Temperature:26.04 Humidity:55.57 Battery:91.06061} 
+DEBU[0107] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"lYhqP2b3a7IQLqAQ","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0109] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"temperature\":\"2606\"}"} 
+INFO[0109] ID: 158d0001fd4989, State: &{Temperature:26.06 Humidity:55.57 Battery:91.06061} 
+DEBU[0109] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"humidity\":\"4648\"}"} 
+INFO[0109] ID: 158d0001fd4989, State: &{Temperature:26.06 Humidity:46.48 Battery:91.06061} 
+DEBU[0117] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"benLXYU3at2Fql0Q","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0127] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"Xg2JHPM5sK80b5Yw","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0133] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"temperature\":\"2592\"}"} 
+INFO[0133] ID: 158d0001fd4989, State: &{Temperature:25.92 Humidity:46.48 Battery:91.06061} 
+DEBU[0134] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"humidity\":\"4031\"}"} 
+INFO[0134] ID: 158d0001fd4989, State: &{Temperature:25.92 Humidity:40.31 Battery:91.06061} 
+DEBU[0137] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"1gtyOVpfpoDBQcme","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0147] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"5i9IYNu3nB4c48rZ","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0157] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"5ylEOu2nBXoWs1d4","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0167] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"X5mLvdLttj6Ue2X0","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0177] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"USPwmu8AgRJguD7l","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0187] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"Re12ihFVo5TteHus","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0197] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"71uhP4KF6KvY0Ggt","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0207] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"tDQblz0G3iGrMrCH","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0217] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"6zK6yjca7lJgrJ9n","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0227] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"Kymg6rDORb8KMsCD","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0237] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"VMkRYEju6PyLaAl2","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0247] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"wTiP5v26PjPtUm99","data":"{\"ip\":\"192.168.31.21\"}"} 
+DEBU[0248] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"temperature\":\"2539\"}"} 
+INFO[0248] ID: 158d0001fd4989, State: &{Temperature:25.39 Humidity:40.31 Battery:91.06061} 
+DEBU[0248] Received device message: {"cmd":"report","model":"sensor_ht","sid":"158d0001fd4989","short_id":21450,"data":"{\"humidity\":\"3842\"}"} 
+INFO[0248] ID: 158d0001fd4989, State: &{Temperature:25.39 Humidity:38.42 Battery:91.06061} 
+DEBU[0257] Received device message: {"cmd":"heartbeat","model":"gateway","sid":"7811dce17b51","short_id":"0","token":"kwbEErqcRQY9YNZp","data":"{\"ip\":\"192.168.31.21\"}"} 
+^C
+Process finished with the exit code 130 (interrupted by signal 2: SIGINT)
