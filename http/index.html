@@ -132,6 +132,27 @@
             </label>
         </div>
     </div>
+    <div class="sensor-card mdc-elevation--z10">
+        <div class="sensor-card-caption">
+            <span class="card-label">Weather now</span>
+            <div class="battery-container">
+                <span class="battery-icon material-icons">compress</span>
+            </div>
+        </div>
+        <div class="displays-container">
+            <label id="pressure-field" class="pressure-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label mdc-floating-label--float-above" id="pressure-label-id">Pressure</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+                <input type="text" class="mdc-text-field__input" aria-labelledby="pressure-label-id" value="700" disabled>
+                <span class="mdc-text-field__affix mdc-text-field__affix--suffix">mm Hg</span>
+            </label>
+        </div>
+    </div>
 </div>
 
 <div id="reset-button-wrapper" class="mdc-touch-target-wrapper">
@@ -186,6 +207,7 @@
     })
 
     updateStatus();
+    updateWeather();
     enableStatusUpdate();
 
     function enableStatusUpdate() {
@@ -197,6 +219,7 @@
 
         function autoUpdateStatus() {
             updateStatus();
+            updateWeather();
             timeoutId = setTimeout(autoUpdateStatus, updateInterval);
         }
     }
@@ -235,6 +258,20 @@
         return await response.json()
     }
 
+    async function getWeather() {
+        const request = new Request(
+            '/weather', { method: 'GET' }
+        );
+
+        const response = await fetch(request);
+        if (!response.ok) {
+            showResponseError('Failed to get weather', response);
+            return null;
+        }
+
+        return await response.json()
+    }
+
     function updateStatus() {
         getStatus().then(status => {
             if (status == null) {
@@ -265,6 +302,16 @@
                         break;
                 }
             }
+        });
+    }
+
+    function updateWeather() {
+        getWeather().then(status => {
+            if (status == null) {
+                return;
+            }
+
+
         });
     }
 
