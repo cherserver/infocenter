@@ -7,129 +7,224 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,400,500">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="framework/material-components-web.css" />
 </head>
 <body class="mdc-typography">
 <div class="cards">
-    <div class="sensor-card mdc-elevation--z10">
-        <div class="sensor-card-caption">
-            <span class="card-label">Kitchen</span>
-            <div class="battery-container">
-                <span class="battery-percent" id="kitchen-battery-percent">56%</span>
+    <div class="sensors-row">
+        <div class="weather-card mdc-elevation--z10">
+            <div class="sensor-card-caption">
+                <span class="card-label">Kitchen</span>
                 <span class="battery-icon material-icons" id="kitchen-battery-bar">battery_3_bar</span>
             </div>
+            <div class="displays-container">
+                <div>
+                    <div>
+                        <span class="measure-icon material-symbols-sharp">device_thermostat</span>
+                        <span class="weather-primary-value" id="kitchen-temp-value">+17.1&deg;</span>
+                    </div>
+                    <div>
+                        <span class="measure-icon material-symbols-sharp">humidity_percentage</span>
+                        <span class="weather-primary-value" id="kitchen-hum-value">&nbsp;46.2%</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="displays-container">
-            <label id="kitchen-temp-field" class="temperature-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
-                <span class="mdc-notched-outline">
-                    <span class="mdc-notched-outline__leading"></span>
-                    <span class="mdc-notched-outline__notch">
-                        <span class="mdc-floating-label mdc-floating-label--float-above" id="kitchen-temp-label-id">Temperature</span>
-                    </span>
-                    <span class="mdc-notched-outline__trailing"></span>
-                </span>
-                <input type="text" class="mdc-text-field__input" aria-labelledby="kitchen-temp-label-id" value="-00.0" disabled>
-                <span class="mdc-text-field__affix mdc-text-field__affix--suffix">°C</span>
-            </label>
-            <label id="kitchen-humidity-field" class="humidity-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
-                <span class="mdc-notched-outline">
-                    <span class="mdc-notched-outline__leading"></span>
-                    <span class="mdc-notched-outline__notch">
-                        <span class="mdc-floating-label mdc-floating-label--float-above" id="kitchen-humidity-label-id">Humidity</span>
-                    </span>
-                    <span class="mdc-notched-outline__trailing"></span>
-                </span>
-                <input type="text" class="mdc-text-field__input" aria-labelledby="kitchen-humidity-label-id" value="100.0" disabled>
-                <span class="mdc-text-field__affix mdc-text-field__affix--suffix">%</span>
-            </label>
-        </div>
-    </div>
-    <div class="sensor-card mdc-elevation--z10">
-        <div class="sensor-card-caption">
-            <span class="card-label">Bedroom</span>
-            <div class="battery-container">
-                <span class="battery-percent" id="bedroom-battery-percent" >56%</span>
+        <div class="weather-card mdc-elevation--z10">
+            <div class="sensor-card-caption">
+                <span class="card-label">Bedroom</span>
                 <span class="battery-icon material-icons" id="bedroom-battery-bar">battery_3_bar</span>
             </div>
+            <div class="displays-container">
+                <div>
+                    <div>
+                        <span class="measure-icon material-symbols-sharp">device_thermostat</span>
+                        <span class="weather-primary-value" id="bedroom-temp-value">+17.1&deg;</span>
+                    </div>
+                    <div>
+                        <span class="measure-icon material-symbols-sharp">humidity_percentage</span>
+                        <span class="weather-primary-value" id="bedroom-hum-value">&nbsp;46.2%</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="displays-container">
-            <label id="bedroom-temp-field" class="temperature-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
-                <span class="mdc-notched-outline">
-                    <span class="mdc-notched-outline__leading"></span>
-                    <span class="mdc-notched-outline__notch">
-                        <span class="mdc-floating-label mdc-floating-label--float-above" id="bedroom-temp-label-id">Temperature</span>
-                    </span>
-                    <span class="mdc-notched-outline__trailing"></span>
-                </span>
-                <input type="text" class="mdc-text-field__input" aria-labelledby="bedroom-temp-label-id" value="-00.0" disabled>
-                <span class="mdc-text-field__affix mdc-text-field__affix--suffix">°C</span>
-            </label>
-            <label id="bedroom-humidity-field" class="humidity-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
-                <span class="mdc-notched-outline">
-                    <span class="mdc-notched-outline__leading"></span>
-                    <span class="mdc-notched-outline__notch">
-                        <span class="mdc-floating-label mdc-floating-label--float-above" id="bedroom-humidity-label-id">Humidity</span>
-                    </span>
-                    <span class="mdc-notched-outline__trailing"></span>
-                </span>
-                <input type="text" class="mdc-text-field__input" aria-labelledby="bedroom-humidity-label-id" value="100.0" disabled>
-                <span class="mdc-text-field__affix mdc-text-field__affix--suffix">%</span>
-            </label>
-        </div>
-    </div>
-    <div class="sensor-card mdc-elevation--z10">
-        <div class="sensor-card-caption">
-            <span class="card-label">Balcony</span>
-            <div class="battery-container">
-                <span class="battery-percent" id="balcony-battery-percent">56%</span>
+        <div class="weather-card mdc-elevation--z10">
+            <div class="sensor-card-caption">
+                <span class="card-label">Balcony</span>
                 <span class="battery-icon material-icons" id="balcony-battery-bar">battery_3_bar</span>
             </div>
-        </div>
-        <div class="displays-container">
-            <label id="balcony-temp-field" class="temperature-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
-                <span class="mdc-notched-outline">
-                    <span class="mdc-notched-outline__leading"></span>
-                    <span class="mdc-notched-outline__notch">
-                        <span class="mdc-floating-label mdc-floating-label--float-above" id="balcony-temp-label-id">Temperature</span>
-                    </span>
-                    <span class="mdc-notched-outline__trailing"></span>
-                </span>
-                <input type="text" class="mdc-text-field__input" aria-labelledby="balcony-temp-label-id" value="-00.0" disabled>
-                <span class="mdc-text-field__affix mdc-text-field__affix--suffix">°C</span>
-            </label>
-            <label id="balcony-humidity-field" class="humidity-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
-                <span class="mdc-notched-outline">
-                    <span class="mdc-notched-outline__leading"></span>
-                    <span class="mdc-notched-outline__notch">
-                        <span class="mdc-floating-label mdc-floating-label--float-above" id="balcony-humidity-label-id">Humidity</span>
-                    </span>
-                    <span class="mdc-notched-outline__trailing"></span>
-                </span>
-                <input type="text" class="mdc-text-field__input" aria-labelledby="balcony-humidity-label-id" value="100.0" disabled>
-                <span class="mdc-text-field__affix mdc-text-field__affix--suffix">%</span>
-            </label>
-        </div>
-    </div>
-    <div class="sensor-card mdc-elevation--z10">
-        <div class="sensor-card-caption">
-            <span class="card-label">Pressure</span>
-            <div class="battery-container">
-                <span class="battery-icon material-icons">compress</span>
+            <div class="displays-container">
+                <div>
+                    <div>
+                        <span class="measure-icon material-symbols-sharp">device_thermostat</span>
+                        <span class="weather-primary-value" id="balcony-temp-value">+17.1&deg;</span>
+                    </div>
+                    <div>
+                        <span class="measure-icon material-symbols-sharp">humidity_percentage</span>
+                        <span class="weather-primary-value" id="balcony-hum-value">&nbsp;46.2%</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="displays-container">
-            <label id="pressure-field" class="pressure-field mdc-text-field mdc-text-field--outlined mdc-text-field--label-floating mdc-text-field--disabled">
-            <span class="mdc-notched-outline">
-                <span class="mdc-notched-outline__leading"></span>
-                <span class="mdc-notched-outline__notch">
-                    <span class="mdc-floating-label mdc-floating-label--float-above" id="pressure-label-id">Pressure</span>
-                </span>
-                <span class="mdc-notched-outline__trailing"></span>
-            </span>
-                <input type="text" class="mdc-text-field__input" aria-labelledby="pressure-label-id" value="700" disabled>
-                <span class="mdc-text-field__affix mdc-text-field__affix--suffix">mm Hg</span>
-            </label>
+    </div>
+    <div class="weather-row">
+        <div class="weather-card mdc-elevation--z10">
+            <div class="sensor-card-caption">
+                <span class="card-label">Now</span>
+            </div>
+            <div class="weather-container">
+                <div class="weather-main-row">
+                    <div class="weather-img-container">
+                        <img class="weather-img" id="now-img" src="img/weather/64x64/day/359.png" alt="icon">
+                    </div>
+                    <div>
+                        <div>
+                            <span class="measure-icon material-symbols-sharp">device_thermostat</span>
+                            <span class="weather-primary-value" id="now-temp-value">+17&deg;</span>
+                        </div>
+                        <div>
+                            <span class="measure-icon material-symbols-sharp">humidity_percentage</span>
+                            <span class="weather-primary-value" id="now-hum-value">&nbsp;46%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather-secondary-row">
+                    <div class="weather-secondary-row-cols">
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">compress</span>
+                            <span class="weather-secondary-value" id="now-pressure-value">765</span>
+                        </div>
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp" id="now-wind-direction">north_west</span>
+                            <span class="weather-secondary-value" id="now-wind-value">7</span>
+                        </div>
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">cloud</span>
+                            <span class="weather-secondary-value" id="now-cloud-value">73%</span>
+                        </div>
+                    </div>
+                    <div class="weather-secondary-row-cols">
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">compress</span>
+                            <span class="weather-secondary-value" id="pressure-value">764</span>
+                        </div>
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">water</span>
+                            <span class="weather-secondary-value" id="now-precipitation-value">7.3 mm</span>
+                        </div>
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">sunny</span>
+                            <span class="weather-secondary-value" id="now-uv-value">4</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="weather-card mdc-elevation--z10">
+            <div class="sensor-card-caption">
+                <span class="card-label">Today</span>
+            </div>
+            <div class="weather-container">
+                <div class="weather-main-row">
+                    <div class="weather-img-container">
+                        <img class="weather-img" id="today-img" src="img/weather/64x64/day/359.png" alt="icon">
+                    </div>
+                    <div>
+                        <div>
+                            <span class="measure-icon material-symbols-sharp">device_thermostat</span>
+                            <span class="weather-primary-value" id="today-temp-value">+24&deg;</span>
+                        </div>
+                        <div>
+                            <span class="measure-icon material-symbols-sharp">humidity_percentage</span>
+                            <span class="weather-primary-value" id="today-hum-value">&nbsp;46%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather-secondary-row">
+                    <div class="weather-secondary-row-cols">
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">thermometer_add</span>
+                            <span class="weather-secondary-value" id="today-temp-max-value">+24&deg;</span>
+                        </div>
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">air</span>
+                            <span class="weather-secondary-value" id="today-wind-value">7</span>
+                        </div>
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">rainy_light</span>
+                            <span class="weather-secondary-value" id="today-rain-percent-value">5%</span>
+                        </div>
+                    </div>
+                    <div class="weather-secondary-row-cols">
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">thermometer_minus</span>
+                            <span class="weather-secondary-value" id="today-temp-min-value">+17&deg;</span>
+                        </div>
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">water</span>
+                            <span class="weather-secondary-value" id="today-precipitation-value">7.3 mm</span>
+                        </div>
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">snowing</span>
+                            <span class="weather-secondary-value" id="today-snow-percent-value">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="weather-card mdc-elevation--z10">
+            <div class="sensor-card-caption">
+                <span class="card-label">Tomorrow</span>
+            </div>
+            <div class="weather-container">
+                <div class="weather-main-row">
+                    <div class="weather-img-container">
+                        <img class="weather-img" id="tomorrow-img" src="img/weather/64x64/day/359.png" alt="icon">
+                    </div>
+                    <div>
+                        <div>
+                            <span class="measure-icon material-symbols-sharp">device_thermostat</span>
+                            <span class="weather-primary-value" id="tomorrow-temp-value">+24&deg;</span>
+                        </div>
+                        <div>
+                            <span class="measure-icon material-symbols-sharp">humidity_percentage</span>
+                            <span class="weather-primary-value" id="tomorrow-hum-value">&nbsp;46%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather-secondary-row">
+                    <div class="weather-secondary-row-cols">
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">thermometer_add</span>
+                            <span class="weather-secondary-value" id="tomorrow-temp-max-value">+24&deg;</span>
+                        </div>
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">air</span>
+                            <span class="weather-secondary-value" id="tomorrow-wind-value">7</span>
+                        </div>
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">rainy_light</span>
+                            <span class="weather-secondary-value" id="tomorrow-rain-percent-value">5%</span>
+                        </div>
+                    </div>
+                    <div class="weather-secondary-row-cols">
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">thermometer_minus</span>
+                            <span class="weather-secondary-value" id="tomorrow-temp-min-value">+17&deg;</span>
+                        </div>
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">water</span>
+                            <span class="weather-secondary-value" id="tomorrow-precipitation-value">7.3 mm</span>
+                        </div>
+                        <div>
+                            <span class="measure-secondary-icon material-symbols-sharp">snowing</span>
+                            <span class="weather-secondary-value" id="tomorrow-snow-percent-value">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -155,29 +250,55 @@
 <script src="framework/material-components-web.js"></script>
 <script>
     // TODO: 'fetch' error handling with try/catch
-    const updateInterval=1000;
+    const updateInterval=5000;
     let timeoutId = null;
     let autoUpdateEnabled = true;
 
     mdc.autoInit();
     const errorBar = new mdc.snackbar.MDCSnackbar(document.querySelector('#error-snackbar'));
 
-    const kitchenTempField = new mdc.textField.MDCTextField(document.querySelector('#kitchen-temp-field'));
-    const kitchenHumidityField = new mdc.textField.MDCTextField(document.querySelector('#kitchen-humidity-field'));
+    const kitchenTemp = document.querySelector('#kitchen-temp-value');
+    const kitchenHum = document.querySelector('#kitchen-hum-value');
     const kitchenBatteryBar = document.querySelector('#kitchen-battery-bar');
-    const kitchenBatterySpan = document.querySelector('#kitchen-battery-percent');
 
-    const bedroomTempField = new mdc.textField.MDCTextField(document.querySelector('#bedroom-temp-field'));
-    const bedroomHumidityField = new mdc.textField.MDCTextField(document.querySelector('#bedroom-humidity-field'));
+    const bedroomTemp = document.querySelector('#bedroom-temp-value');
+    const bedroomHum = document.querySelector('#bedroom-hum-value');
     const bedroomBatteryBar = document.querySelector('#bedroom-battery-bar');
-    const bedroomBatterySpan = document.querySelector('#bedroom-battery-percent');
 
-    const balconyTempField = new mdc.textField.MDCTextField(document.querySelector('#balcony-temp-field'));
-    const balconyHumidityField = new mdc.textField.MDCTextField(document.querySelector('#balcony-humidity-field'));
+    const balconyTemp = document.querySelector('#balcony-temp-value');
+    const balconyHum = document.querySelector('#balcony-hum-value');
     const balconyBatteryBar = document.querySelector('#balcony-battery-bar');
-    const balconyBatterySpan = document.querySelector('#balcony-battery-percent');
 
-    const pressureField = new mdc.textField.MDCTextField(document.querySelector('#pressure-field'));
+    const nowImg = document.querySelector('#now-img');
+    const nowTemp = document.querySelector('#now-temp-value');
+    const nowHum = document.querySelector('#now-hum-value');
+    const nowPressure = document.querySelector('#now-pressure-value');
+    const pressure = document.querySelector('#pressure-value');
+    const nowWind = document.querySelector('#now-wind-value');
+    const nowWindDir = document.querySelector('#now-wind-direction');
+    const nowPrecipitation = document.querySelector('#now-precipitation-value');
+    const nowCloud = document.querySelector('#now-cloud-value');
+    const nowUV = document.querySelector('#now-uv-value');
+
+    const todayImg = document.querySelector('#today-img');
+    const todayTemp = document.querySelector('#today-temp-value');
+    const todayHum = document.querySelector('#today-hum-value');
+    const todayTempMax = document.querySelector('#today-temp-max-value');
+    const todayTempMin = document.querySelector('#today-temp-min-value');
+    const todayWind = document.querySelector('#today-wind-value');
+    const todayPrecipitation = document.querySelector('#today-precipitation-value');
+    const todayRainPercent = document.querySelector('#today-rain-percent-value');
+    const todaySnowPercent = document.querySelector('#today-snow-percent-value');
+
+    const tomorrowImg = document.querySelector('#tomorrow-img');
+    const tomorrowTemp = document.querySelector('#tomorrow-temp-value');
+    const tomorrowHum = document.querySelector('#tomorrow-hum-value');
+    const tomorrowTempMax = document.querySelector('#tomorrow-temp-max-value');
+    const tomorrowTempMin = document.querySelector('#tomorrow-temp-min-value');
+    const tomorrowWind = document.querySelector('#tomorrow-wind-value');
+    const tomorrowPrecipitation = document.querySelector('#tomorrow-precipitation-value');
+    const tomorrowRainPercent = document.querySelector('#tomorrow-rain-percent-value');
+    const tomorrowSnowPercent = document.querySelector('#tomorrow-snow-percent-value');
 
     const resetButton = document.querySelector('#reset-button')
     new mdc.ripple.MDCRipple(resetButton);
@@ -186,6 +307,7 @@
     })
 
     updateStatus();
+    updateWeather();
     enableStatusUpdate();
 
     function enableStatusUpdate() {
@@ -197,6 +319,7 @@
 
         function autoUpdateStatus() {
             updateStatus();
+            updateWeather();
             timeoutId = setTimeout(autoUpdateStatus, updateInterval);
         }
     }
@@ -235,6 +358,20 @@
         return await response.json()
     }
 
+    async function getWeather() {
+        const request = new Request(
+            '/weather', { method: 'GET' }
+        );
+
+        const response = await fetch(request);
+        if (!response.ok) {
+            showResponseError('Failed to get weather', response);
+            return null;
+        }
+
+        return await response.json()
+    }
+
     function updateStatus() {
         getStatus().then(status => {
             if (status == null) {
@@ -254,18 +391,82 @@
 
                 switch (sensor.sid) {
                     case kitchenSensorSID:
-                        updateThermometer(sensor, kitchenTempField, kitchenHumidityField, kitchenBatterySpan, kitchenBatteryBar);
+                        updateThermometer(sensor, kitchenTemp, kitchenHum, kitchenBatteryBar);
                         break;
                     case bedroomSensorSID:
-                        updateThermometer(sensor, bedroomTempField, bedroomHumidityField, bedroomBatterySpan, bedroomBatteryBar);
-                        updatePressure(sensor, pressureField)
+                        updateThermometer(sensor, bedroomTemp, bedroomHum, bedroomBatteryBar);
+                        updatePressure(sensor, pressure);
                         break;
                     case balconySensorSID:
-                        updateThermometer(sensor, balconyTempField, balconyHumidityField, balconyBatterySpan, balconyBatteryBar);
+                        updateThermometer(sensor, balconyTemp, balconyHum, balconyBatteryBar);
                         break;
                 }
             }
         });
+    }
+
+    function updateWeather() {
+        getWeather().then(weather => {
+            if (weather == null) {
+                return;
+            }
+
+            const now = weather.current;
+            const today = weather.forecast[0];
+            const tomorrow = weather.forecast[1];
+
+            nowImg.src = now.condition_image;
+            nowTemp.innerHTML = weatherTemp(now.temperature);
+            nowHum.innerHTML = weatherHum(now.humidity);
+            nowPressure.innerHTML = Math.round(now.pressure);
+            nowWind.innerHTML = Math.round(now.wind);
+            nowWindDir.innerHTML = windDirection(now.wind_degree);
+            nowPrecipitation.innerHTML = now.precipitation;
+            nowCloud.innerHTML = now.cloud_percent + '%';
+            nowUV.innerHTML = now.uv;
+
+            todayImg.src = today.condition_image;
+            todayTemp.innerHTML = weatherTemp(today.avg_temp);
+            todayHum.innerHTML = weatherHum(today.avg_humidity);
+            todayTempMax.innerHTML = weatherTemp(today.max_temp);
+            todayTempMin.innerHTML = weatherTemp(today.min_temp);
+            todayWind.innerHTML = Math.round(today.max_wind);
+            todayPrecipitation.innerHTML = today.total_precipitation;
+            todayRainPercent.innerHTML = today.daily_chance_of_rain + '%';
+            todaySnowPercent.innerHTML = today.daily_chance_of_snow + '%';
+
+            tomorrowImg.src = tomorrow.condition_image;
+            tomorrowTemp.innerHTML = weatherTemp(tomorrow.avg_temp);
+            tomorrowHum.innerHTML = weatherHum(tomorrow.avg_humidity);
+            tomorrowTempMax.innerHTML = weatherTemp(tomorrow.max_temp);
+            tomorrowTempMin.innerHTML = weatherTemp(tomorrow.min_temp);
+            tomorrowWind.innerHTML = Math.round(tomorrow.max_wind);
+            tomorrowPrecipitation.innerHTML = tomorrow.total_precipitation;
+            tomorrowRainPercent.innerHTML = tomorrow.daily_chance_of_rain + '%';
+            tomorrowSnowPercent.innerHTML = tomorrow.daily_chance_of_snow + '%';
+        });
+    }
+
+    function windDirection(windDegree) {
+        const pseudoAngle = (windDegree + ((360/8)/2)) % 360;
+        const val =  Math.floor(pseudoAngle / 45);
+        const arr = ["north", "north_east", "east", "south_east","south","south_west","west","north_west"];
+        return arr[val]
+    }
+
+    function weatherTemp(tempVal) {
+        let sign = '+'
+        if (tempVal < 0) {
+            sign = '-'
+        } else if (tempVal === 0) {
+            sign = '&nbsp;'
+        }
+
+        return sign + Math.round(tempVal)+'&deg;';
+    }
+
+    function weatherHum(humVal) {
+        return '&nbsp;' + Math.round(humVal)+'%';
     }
 
     function formatDecimal(data) {
@@ -277,25 +478,30 @@
         )
     }
 
-    function updateThermometer(thermometer, tempField, humidityField, batterySpan, batteryBar) {
+    function updateThermometer(thermometer, tempLabel, humidityLabel, batteryBar) {
         if (thermometer === undefined) {
             return;
         }
 
         const temp = thermometer.temperature;
         if (temp !== undefined) {
-            tempField.value = formatDecimal(temp);
+            let sign = '+'
+            if (temp < 0) {
+                sign = '-'
+            } else if (temp === 0) {
+                sign = '&nbsp;'
+            }
+
+            tempLabel.innerHTML = sign + formatDecimal(temp)+'&deg;';
         }
 
         const hum = thermometer.humidity;
         if (hum !== undefined) {
-            humidityField.value = formatDecimal(hum);
+            humidityLabel.innerHTML = '&nbsp;' + formatDecimal(hum) + '%';
         }
 
         const bat = thermometer.battery_percent;
         if (bat !== undefined) {
-            batterySpan.innerHTML = bat + "%";
-
             // we have 8 different value bars (0=0_bar 7=full)
             let bar = Math.round(bat*8/100)
 
@@ -312,14 +518,14 @@
         }
     }
 
-    function updatePressure(sensor, pressureField) {
+    function updatePressure(sensor, pressureLabel) {
         if (sensor === undefined) {
             return;
         }
 
         const pressure = sensor.pressure;
         if (pressure !== undefined) {
-            pressureField.value = Math.round(pressure / 133.3223684);
+            pressureLabel.innerHTML = Math.round(pressure / 133.3223684);
         }
     }
 

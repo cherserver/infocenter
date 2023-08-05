@@ -7,6 +7,7 @@ import (
 	"syscall"
 
 	"github.com/cherserver/infocenter/service/devices/xiaomi"
+	"github.com/cherserver/infocenter/service/weather"
 	"github.com/cherserver/infocenter/service/web"
 )
 
@@ -26,7 +27,13 @@ func main() {
 		log.Fatalf("Failed to initialize gateway: %v", err)
 	}
 
-	webServer := web.NewServer(gateway)
+	weatherSource := weather.New()
+	err = weatherSource.Init()
+	if err != nil {
+		log.Fatalf("Failed to initialize weather: %v", err)
+	}
+
+	webServer := web.NewServer(gateway, weatherSource)
 	err = webServer.Init()
 	if err != nil {
 		log.Fatalf("Failed to initialize web server: %v", err)
@@ -38,5 +45,6 @@ func main() {
 	log.Printf("Signal '%+v' caught, exit", stopSignal)
 
 	webServer.Stop()
+	weatherSource.Stop()
 	gateway.Stop()
 }
