@@ -3,6 +3,8 @@
     --mdc-theme-secondary: #559c55 !important;
     --mdc-theme-surface: slategray !important;
     --mdc-theme-on-surface: slategray !important;
+    --measure-font-size: 2.8rem !important;
+    --measure-secondary-font-size: 2rem !important;
 }
 
 body {
@@ -19,14 +21,49 @@ body {
     src: url("fonts/ds-digital/ds-digib.ttf") format("truetype");
 }
 
+@font-face{
+    font-family: "FIRA-MONO";
+    src: url("fonts/fira-mono/fira-mono-medium.ttf") format("truetype");
+}
+
 span {
     #font-size: 1.1rem;
 }
 
 .cards{
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
+    justify-content: space-between;
+}
+
+.sensors-row{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.weather-row{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.measure-icon {
+    font-size: var(--measure-font-size);
+    position: relative;
+    top: 9px;
+}
+
+.measure-secondary-icon {
+    font-size: var(--measure-secondary-font-size);
+    position: relative;
+    top: 7px;
 }
 
 .sensor-card {
@@ -50,7 +87,7 @@ span {
 
 .card-label {
     position: relative;
-    font-size: 1.1rem;
+    font-size: 1.6rem;
 }
 
 .battery-container {
@@ -60,8 +97,9 @@ span {
 }
 
 .battery-icon {
+    font-size: 1.6rem;
     position: relative;
-    bottom: 3px;
+    top: 2px;
 }
 
 .battery-percent {
@@ -123,7 +161,7 @@ span {
 
 .mdc-text-field--disabled .mdc-text-field__input {
     color: lime !important;
-    font-family: DS-DIGIB !important;
+    font-family: DS-DIGIB, monospace !important;
     font-size: 1.4rem !important;
 }
 
@@ -131,4 +169,58 @@ span {
     position: fixed;
     top: 1rem;
     right: 1rem;
+}
+
+.weather-card {
+    border: 1px solid darkslategray;
+    border-radius: 8px;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: 1.5rem;
+    margin-right: 1.5rem;
+    background-color: #1a1a1a;
+}
+
+.weather-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-main-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.weather-secondary-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.weather-secondary-row-cols {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.weather-img {
+    width: 128px;
+    height: 128px;
+}
+
+.weather-primary-value {
+    color: lime !important;
+    font-family: FIRA-MONO, monospace !important;
+    font-size: var(--measure-font-size);
+    letter-spacing: -.2rem;
+}
+
+.weather-secondary-value {
+    font-family: FIRA-MONO, monospace !important;
+    font-size: var(--measure-secondary-font-size);
+    letter-spacing: -.1rem;
 }
