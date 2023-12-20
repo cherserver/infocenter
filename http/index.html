@@ -455,14 +455,15 @@
     }
 
     function weatherTemp(tempVal) {
-        let sign = '+'
-        if (tempVal < 0) {
-            sign = '-'
-        } else if (tempVal === 0) {
-            sign = '&nbsp;'
+        let roundVal = Math.round(tempVal);
+        let sign = '+';
+        if (roundVal < 0) {
+            sign = '';
+        } else if (roundVal === 0) {
+            sign = '&nbsp;';
         }
 
-        return sign + Math.round(tempVal)+'&deg;';
+        return sign + roundVal + '&deg;';
     }
 
     function weatherHum(humVal) {
@@ -485,11 +486,11 @@
 
         const temp = thermometer.temperature;
         if (temp !== undefined) {
-            let sign = '+'
+            let sign = '+';
             if (temp < 0) {
-                sign = ''
+                sign = '';
             } else if (temp === 0) {
-                sign = '&nbsp;'
+                sign = '&nbsp;';
             }
 
             tempLabel.innerHTML = sign + formatDecimal(temp)+'&deg;';
