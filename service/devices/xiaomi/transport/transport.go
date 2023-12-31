@@ -109,7 +109,7 @@ func (t *Transport) Start() error {
 
 	resp := <-t.request("", requestGetChildDevices, nil)
 	if resp.err != nil {
-		return fmt.Errorf("failed to call gateway devices list: %w", err)
+		return fmt.Errorf("failed to call gateway devices list: %w", resp.err)
 	}
 
 	t.gatewaySID = resp.msg.Sid
