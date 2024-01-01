@@ -467,7 +467,14 @@
     }
 
     function weatherHum(humVal) {
-        return '&nbsp;' + Math.round(humVal)+'%';
+	let hum = Math.round(humVal);
+	if (hum > 99) {
+	    hum = 99;
+	} else if (hum < 0) {
+	    hum = 0;
+	}
+
+        return '&nbsp;' + hum + '%';
     }
 
     function formatDecimal(data) {
