@@ -542,14 +542,16 @@
             let val = Math.trunc(lastUpdate / 60);
             let valStr
             if (val <= 0) {
-                val = "library_add_check"
+                valStr = "library_add_check"
             } else if (val > 9) {
-                val = "filter_9_plus"
+                valStr = "filter_9_plus"
             } else {
-                val = `filter_${val}`;
+                valStr = `filter_${val}`;
             }
 
-            connectionBar.innerHTML = val;
+            connectionBar.innerHTML = valStr;
+        } else {
+            connectionBar.innerHTML = "wifi_off";
         }
     }
 
