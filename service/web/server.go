@@ -3,12 +3,12 @@ package web
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/google/uuid"
 	"log"
 	"net"
 	"net/http"
 	"os"
-
-	"github.com/google/uuid"
+	"time"
 
 	"github.com/cherserver/infocenter/service/devices"
 	"github.com/cherserver/infocenter/service/weather"
@@ -84,6 +84,12 @@ func (s *Server) sensorsHandler(w http.ResponseWriter, r *http.Request) {
 
 		sensor := Sensor{SID: device.SID()}
 		s.fillUpSensor(data, &sensor)
+
+		if !device.LastUpdateAt().IsZero() {
+			diff := uint64(time.Now().Sub(device.LastUpdateAt()).Seconds())
+			sensor.LastUpdateSec = &diff
+		}
+
 		sensors = append(sensors, sensor)
 	}
 

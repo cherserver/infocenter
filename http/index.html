@@ -17,7 +17,10 @@
         <div class="weather-card mdc-elevation--z10">
             <div class="sensor-card-caption">
                 <span class="card-label">Kitchen</span>
-                <span class="battery-icon material-icons" id="kitchen-battery-bar">battery_3_bar</span>
+                <div>
+                    <span class="battery-icon material-icons" id="kitchen-connection-bar">filter_1</span>
+                    <span class="battery-icon material-icons" id="kitchen-battery-bar">battery_3_bar</span>
+                </div>
             </div>
             <div class="displays-container">
                 <div>
@@ -35,7 +38,10 @@
         <div class="weather-card mdc-elevation--z10">
             <div class="sensor-card-caption">
                 <span class="card-label">Bedroom</span>
-                <span class="battery-icon material-icons" id="bedroom-battery-bar">battery_3_bar</span>
+                <div>
+                    <span class="battery-icon material-icons" id="bedroom-connection-bar">library_add_check</span>
+                    <span class="battery-icon material-icons" id="bedroom-battery-bar">battery_3_bar</span>
+                </div>
             </div>
             <div class="displays-container">
                 <div>
@@ -53,7 +59,10 @@
         <div class="weather-card mdc-elevation--z10">
             <div class="sensor-card-caption">
                 <span class="card-label">Balcony</span>
-                <span class="battery-icon material-icons" id="balcony-battery-bar">battery_3_bar</span>
+                <div>
+                    <span class="battery-icon material-icons" id="balcony-connection-bar">filter_9_plus</span>
+                    <span class="battery-icon material-icons" id="balcony-battery-bar">battery_3_bar</span>
+                </div>
             </div>
             <div class="displays-container">
                 <div>
@@ -260,14 +269,17 @@
     const kitchenTemp = document.querySelector('#kitchen-temp-value');
     const kitchenHum = document.querySelector('#kitchen-hum-value');
     const kitchenBatteryBar = document.querySelector('#kitchen-battery-bar');
+    const kitchenConnectionBar = document.querySelector('#kitchen-connection-bar');
 
     const bedroomTemp = document.querySelector('#bedroom-temp-value');
     const bedroomHum = document.querySelector('#bedroom-hum-value');
     const bedroomBatteryBar = document.querySelector('#bedroom-battery-bar');
+    const bedroomConnectionBar = document.querySelector('#bedroom-connection-bar');
 
     const balconyTemp = document.querySelector('#balcony-temp-value');
     const balconyHum = document.querySelector('#balcony-hum-value');
     const balconyBatteryBar = document.querySelector('#balcony-battery-bar');
+    const balconyConnectionBar = document.querySelector('#balcony-connection-bar');
 
     const nowImg = document.querySelector('#now-img');
     const nowTemp = document.querySelector('#now-temp-value');
@@ -391,14 +403,14 @@
 
                 switch (sensor.sid) {
                     case kitchenSensorSID:
-                        updateThermometer(sensor, kitchenTemp, kitchenHum, kitchenBatteryBar);
+                        updateThermometer(sensor, kitchenTemp, kitchenHum, kitchenBatteryBar, kitchenConnectionBar);
                         break;
                     case bedroomSensorSID:
-                        updateThermometer(sensor, bedroomTemp, bedroomHum, bedroomBatteryBar);
+                        updateThermometer(sensor, bedroomTemp, bedroomHum, bedroomBatteryBar, bedroomConnectionBar);
                         updatePressure(sensor, pressure);
                         break;
                     case balconySensorSID:
-                        updateThermometer(sensor, balconyTemp, balconyHum, balconyBatteryBar);
+                        updateThermometer(sensor, balconyTemp, balconyHum, balconyBatteryBar, balconyConnectionBar);
                         break;
                 }
             }
@@ -486,7 +498,7 @@
         )
     }
 
-    function updateThermometer(thermometer, tempLabel, humidityLabel, batteryBar) {
+    function updateThermometer(thermometer, tempLabel, humidityLabel, batteryBar, connectionBar) {
         if (thermometer === undefined) {
             return;
         }
@@ -523,6 +535,21 @@
             }
 
             batteryBar.innerHTML = val;
+        }
+
+        const lastUpdate = thermometer.last_update_sec;
+        if (lastUpdate !== undefined) {
+            let val = Math.trunc(lastUpdate / 60);
+            let valStr
+            if (val <= 0) {
+                val = "library_add_check"
+            } else if (val > 9) {
+                val = "filter_9_plus"
+            } else {
+                val = `filter_${val}`;
+            }
+
+            connectionBar.innerHTML = val;
         }
     }
 

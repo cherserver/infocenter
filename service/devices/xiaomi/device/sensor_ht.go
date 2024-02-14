@@ -6,6 +6,7 @@ import (
 	"log"
 	"strconv"
 	"sync/atomic"
+	"time"
 
 	"github.com/cherserver/infocenter/service/devices"
 	"github.com/cherserver/infocenter/service/devices/xiaomi/transport"
@@ -25,14 +26,24 @@ type sensorHTData struct {
 }
 
 type SensorHT struct {
-	sid         string
-	voltage     atomic.Pointer[float32]
-	temperature atomic.Pointer[float32]
-	humidity    atomic.Pointer[float32]
+	sid          string
+	lastUpdateAt atomic.Pointer[time.Time]
+	voltage      atomic.Pointer[float32]
+	temperature  atomic.Pointer[float32]
+	humidity     atomic.Pointer[float32]
 }
 
 func (s *SensorHT) SID() string {
 	return s.sid
+}
+
+func (s *SensorHT) LastUpdateAt() time.Time {
+	ptr := s.lastUpdateAt.Load()
+	if ptr == nil {
+		return time.Time{}
+	}
+
+	return *ptr
 }
 
 func (s *SensorHT) OnHeartBeat(data string) {
@@ -110,6 +121,9 @@ func (s *SensorHT) parseData(data string) error {
 
 	log.Printf("New '%s' device data: temp '%v', hum '%v', voltage '%v'",
 		s.sid, s.Temperature(), s.Humidity(), s.BatteryVoltage())
+
+	newLastUpdateAt := time.Now()
+	s.lastUpdateAt.Store(&newLastUpdateAt)
 
 	return nil
 }

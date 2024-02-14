@@ -6,6 +6,7 @@ import (
 	"log"
 	"strconv"
 	"sync/atomic"
+	"time"
 
 	"github.com/cherserver/infocenter/service/devices"
 	"github.com/cherserver/infocenter/service/devices/xiaomi/transport"
@@ -27,15 +28,25 @@ type weatherV1Data struct {
 }
 
 type WeatherV1 struct {
-	sid         string
-	voltage     atomic.Pointer[float32]
-	temperature atomic.Pointer[float32]
-	humidity    atomic.Pointer[float32]
-	pressure    atomic.Pointer[float32]
+	sid          string
+	lastUpdateAt atomic.Pointer[time.Time]
+	voltage      atomic.Pointer[float32]
+	temperature  atomic.Pointer[float32]
+	humidity     atomic.Pointer[float32]
+	pressure     atomic.Pointer[float32]
 }
 
 func (s *WeatherV1) SID() string {
 	return s.sid
+}
+
+func (s *WeatherV1) LastUpdateAt() time.Time {
+	ptr := s.lastUpdateAt.Load()
+	if ptr == nil {
+		return time.Time{}
+	}
+
+	return *ptr
 }
 
 func (s *WeatherV1) OnHeartBeat(data string) {
@@ -128,6 +139,9 @@ func (s *WeatherV1) parseData(data string) error {
 
 	log.Printf("New '%s' device data: temp '%v', hum '%v', pressure '%v', voltage '%v'",
 		s.sid, s.Temperature(), s.Humidity(), s.Pressure(), s.BatteryVoltage())
+
+	newLastUpdateAt := time.Now()
+	s.lastUpdateAt.Store(&newLastUpdateAt)
 
 	return nil
 }

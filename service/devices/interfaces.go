@@ -1,7 +1,10 @@
 package devices
 
+import "time"
+
 type Device interface {
 	SID() string
+	LastUpdateAt() time.Time
 }
 
 type BatteryPowered interface {
